@@ -1,48 +1,24 @@
-// import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-// @Component({
-//   selector: 'app-table',
-//   templateUrl: './table.component.html',
-//   styleUrls: ['./table.component.css']
-// })
-// export class TableComponent {
-
-// }
-
-import { Component, ViewChild } from '@angular/core';
-import { MatTable } from '@angular/material/table';
-import { IMessage } from '../../interfaces/interfaces';
-
-export interface PeriodicElement {
-  id: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: IMessage[] = [
-  {
-    id: '1',
-    name: 'Hydrogen',
-    message: 'hello, its my message',
-    date: Date.now(),
-  },
-];
+import { generateMessagesTableColumns } from '../../helpers/generate-messages-table-columns';
+import { messagesActions } from '../../store/actions';
+import { selectAllMessages } from '../../store/selectors';
+import { MessageTableColumns } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
 })
-export class TableComponent {
-  displayedColumns: string[] = ['id', 'name', 'message', 'date'];
-  dataSource = [...ELEMENT_DATA];
+export class TableComponent implements OnInit {
+  messagesTableColumnsEnum = MessageTableColumns;
+  displayedColumns = Object.values(MessageTableColumns);
+  columnsData = generateMessagesTableColumns();
+  dataSource = this.store.select(selectAllMessages);
 
-  @ViewChild(MatTable) table!: MatTable<PeriodicElement>;
-
-  addData(): void {
-    const randomElementIndex = Math.floor(Math.random() * ELEMENT_DATA.length);
-    this.dataSource.push(ELEMENT_DATA[randomElementIndex]);
-    this.table.renderRows();
+  constructor(private store: Store) {}
+  ngOnInit(): void {
+    this.store.dispatch(messagesActions.loadMessages());
   }
 }

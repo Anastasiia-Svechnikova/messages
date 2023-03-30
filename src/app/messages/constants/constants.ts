@@ -1,0 +1,2 @@
+export const FIRESTORE_MESSAGES_COLLECTION_NAME = 'messages';
+export const FIRESTORE_DOCUMENT_PROPERTY_NAME_FOR_MESSAGE = 'text';

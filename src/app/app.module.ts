@@ -11,6 +11,11 @@ import { AppComponent } from './app.component';
 import { MessagesModule } from './messages/messages.module';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { SpinnerEffects } from './shared/store/spinner.effects';
+import { SnackBarEffects } from './shared/store/snack-bar.effects';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, HomeComponent],
@@ -19,12 +24,14 @@ import { HomeComponent } from './home/home.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     MatToolbarModule,
-
     MessagesModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([SpinnerEffects, SnackBarEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
   ],
+
   providers: [],
   bootstrap: [AppComponent],
 })
