@@ -33,6 +33,7 @@ export class MessagesService {
       this.messagesCollection,
       orderBy('date', 'desc'),
     );
+
     return collectionData(orderedByDateQuery, {
       idField: 'id',
     }) as Observable<IMessage[]>;

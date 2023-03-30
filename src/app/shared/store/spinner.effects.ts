@@ -21,7 +21,12 @@ export class SpinnerEffects {
   spinnerOff$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(messagesActions.loadedMessages, messagesActions.addedMessage),
+        ofType(
+          messagesActions.loadedMessages,
+          messagesActions.addedMessage,
+          messagesActions.loadedError,
+          messagesActions.addedError,
+        ),
         tap(() => {
           setTimeout(() => {
             this.spinner.hide();
