@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "messages-7d72c": {
+      "hosting": {
+        "boilerplate": [
+          "messages-7d72c"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "messages-7d72c"
+  }
+}

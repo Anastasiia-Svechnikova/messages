@@ -1,0 +1,30 @@
+<table
+  mat-table
+  class="mat-elevation-z8"
+  [dataSource]="dataSource">
+  <ng-container
+    *ngFor="let column of columnsData"
+    [matColumnDef]="column.columnName">
+    <th
+      mat-header-cell
+      *matHeaderCellDef>
+      {{ column.columnName | titlecase }}
+    </th>
+    <td
+      class="trimmed"
+      mat-cell
+      *matCellDef="let row">
+      {{
+        column.columnName !== messagesTableColumnsEnum.date
+          ? (column.cell(row) | slice : 0 : 100)
+          : (column.cell(row) | date : 'medium')
+      }}
+    </td>
+  </ng-container>
+  <tr
+    mat-header-row
+    *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

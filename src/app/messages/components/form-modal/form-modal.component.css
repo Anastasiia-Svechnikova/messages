@@ -1,0 +1,22 @@
+.form {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  width: 500px;
+}
+
+.close {
+  width: fit-content;
+  margin-left: auto;
+}
+
+.mat-mdc-mini-fab {
+  background-color: #f0ecec;
+  box-shadow: none;
+}
+
+.mat-mdc-button:not(:disabled) {
+  display: block;
+  width: 130px;
+  background-color: #ff7f50;
+}
