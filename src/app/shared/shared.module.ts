@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { NgxSpinnerModule } from 'ngx-spinner';
+
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoaderComponent } from './loader/loader.component';
@@ -13,7 +13,6 @@ import { LoaderComponent } from './loader/loader.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
@@ -24,7 +23,6 @@ import { LoaderComponent } from './loader/loader.component';
     MatButtonModule,
     CommonModule,
     ReactiveFormsModule,
-    NgxSpinnerModule,
     LoaderComponent,
   ],
   providers: [],
