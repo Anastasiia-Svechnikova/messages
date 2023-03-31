@@ -30,9 +30,6 @@
       <mat-error *ngIf="messageForm.controls['text'].hasError('required')">
         Message text is required
       </mat-error>
-      <mat-error *ngIf="messageForm.controls['text'].hasError('maxlength')">
-        Max length 100 symbols
-      </mat-error>
     </mat-form-field>
     <div mat-dialog-actions>
       <button

@@ -11,11 +11,12 @@
       {{ column.columnName | titlecase }}
     </th>
     <td
+      class="trimmed"
       mat-cell
       *matCellDef="let row">
       {{
         column.columnName !== messagesTableColumnsEnum.date
-          ? column.cell(row)
+          ? (column.cell(row) | slice : 0 : 100)
           : (column.cell(row) | date : 'medium')
       }}
     </td>

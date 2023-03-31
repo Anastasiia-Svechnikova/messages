@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { tap } from 'rxjs/operators';
 
 import { messagesActions } from 'src/app/messages/store/actions';
-import { SPINNER_SET_TIMEOUT_DURATION } from '../constants/constants';
+import { LoaderService } from '../loader/loader.service';
 
 @Injectable()
 export class SpinnerEffects {
@@ -12,7 +11,7 @@ export class SpinnerEffects {
     () => {
       return this.actions$.pipe(
         ofType(messagesActions.addMessage, messagesActions.loadMessages),
-        tap(() => this.spinner.show()),
+        tap(() => this.loaderService.loadingOn()),
       );
     },
     { dispatch: false },
@@ -27,15 +26,14 @@ export class SpinnerEffects {
           messagesActions.loadedError,
           messagesActions.addedError,
         ),
-        tap(() => {
-          setTimeout(() => {
-            this.spinner.hide();
-          }, SPINNER_SET_TIMEOUT_DURATION);
-        }),
+        tap(() => this.loaderService.loadingOff()),
       );
     },
     { dispatch: false },
   );
 
-  constructor(private actions$: Actions, private spinner: NgxSpinnerService) {}
+  constructor(
+    private actions$: Actions,
+    private loaderService: LoaderService,
+  ) {}
 }

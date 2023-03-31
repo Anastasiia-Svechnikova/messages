@@ -21,7 +21,7 @@ export class FormModalComponent implements OnInit {
   private createForm(): void {
     this.messageForm = this.fb.group({
       name: ['', Validators.required],
-      text: ['', [Validators.required, Validators.maxLength(100)]],
+      text: ['', Validators.required],
     });
   }
 
